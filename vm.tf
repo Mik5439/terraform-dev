@@ -6,7 +6,6 @@ resource "azurerm_virtual_machine" "ubuntu" {
   vm_size               = "Standard_DS1_v2"
   delete_os_disk_on_termination = true
   delete_data_disks_on_termination = true
-
   storage_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
@@ -21,8 +20,8 @@ resource "azurerm_virtual_machine" "ubuntu" {
   }
   os_profile {
     computer_name  = "websrv"
-    admin_username = "amik"
-	admin_password = "Password1234!"
+    admin_username = "${var.username}"
+	admin_password = "${var.pass}"
     }
   os_profile_linux_config {
     disable_password_authentication = false
